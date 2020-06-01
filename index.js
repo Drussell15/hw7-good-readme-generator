@@ -65,7 +65,7 @@ const questions = [
         message: "if there are questions, what is the best email to reach you?",
         name: "questions",
     }
-
+];
 function writeToFile(fileName, data) {
 
         let README = generateMarkdown(data);
