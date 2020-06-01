@@ -66,3 +66,27 @@ const questions = [
         name: "questions",
     }
 
+function writeToFile(fileName, data) {
+
+        let README = generateMarkdown(data);
+        fs.writeFile(fileName, README, err => {
+            if (err) {
+                throw err;
+            }
+        });
+    }
+function init() {
+        inquirer.prompt(questions)
+            .then(data => {
+                writeToFile("README.md", data);
+            })
+            .catch(error => {
+                throw error;
+            });
+    }
+init();
+
+// inquirer.prompt(questions).then((response) => {
+//     console.log({ ...response });
+//     writeToFile("README.md", generateMarkdown({ ...response }));
+// });
