@@ -1,13 +1,16 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const util =require("util");
 const generateMarkdown = require("./utils/generateMarkdown");
 const path = require("path");
 //make sure all requires are at top of page//
 //.gitignore will ignore what we tell it to//
 
 //add questions to user to an array of things we want to ask user//
+const writeFileAsync = util.promisify(fs.writeFile);
 
-const questions = [
+function promptUser() {
+    return inquirer.prompt([
     {
         type: "input",
         message: "what is your GitHub username?",
@@ -65,28 +68,24 @@ const questions = [
         message: "if there are questions, what is the best email to reach you?",
         name: "questions",
     }
-];
+])
+.then(answers=> { 
+        fs.writeFile("README.md", generateMarkdown(answers), (err) => {
+            if (err) throw err;
+            console.log('README created');
+        })
+    })
+}
+//inquirer is async info
+
 function writeToFile(fileName, data) {
+    
+}
 
-        let README = generateMarkdown(data);
-        fs.writeFile(fileName, README, err => {
-            if (err) {
-                throw err;
-            }
-        });
-    }
 function init() {
-        inquirer.prompt(questions)
-            .then(data => {
-                writeToFile("README.md", data);
-            })
-            .catch(error => {
-                throw error;
-            });
-    }
-init();
+    
+}
 
-// inquirer.prompt(questions).then((response) => {
-//     console.log({ ...response });
-//     writeToFile("README.md", generateMarkdown({ ...response }));
-// });
+
+propmtUser();
+init();
