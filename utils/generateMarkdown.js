@@ -1,6 +1,21 @@
 function generateMarkdown(data) {
   return `
-# ${data.title}
+# ${data.name}
+
+##Description-
+${data.description}
+
+## Installation-
+${data.installation}
+
+## Usage-
+${data.usage}
+
+## License-
+![license](https://img.shields.io/badge/license-${data.license}-BLUE)
+
+## Author-
+${data.author}
 
 `;
 }
