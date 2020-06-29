@@ -39,21 +39,21 @@ const questions = [
         name: "install",
     },
     {
-        type: "checkbox",
-        message: "what license will you use?",
+        type: "list",
         name: "license",
+        message: "what license will you use?",
         choices: [
-            "M.I.T",
-            "ISC",
-            "GPL X.X",
+            "AGPL",
+            "MIT",
+            "GPLv3,
             "APACHE 2.0",
-            "none",
+            "none"
         ]
     },
     {
         type: "input",
-        message: "any other contributions that need to be added? who can contribute?",
-        name: "contribution",
+        name: "contributing",
+        message: "what users contributed?"
     },
     {
         type: "input",
